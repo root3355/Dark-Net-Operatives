@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK NET OPERATIVES | ¡OMG!!!</title>
+    <style>
+        :root {
+            --dedsec-rojo: #ff003c;
+            --dedsec-azul: #00a2ff;
+            --dedsec-amarillo: #ffed00;
+            --fondo-oscuro: #111111;
+            --texto-claro: #f0f0f0;
+        }
+        
+        body {
+            background-color: var(--fondo-oscuro);
+            color: var(--texto-claro);
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,0,60,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0,162,255,0.1) 0%, transparent 50%);
+        }
+        
+        .glitch-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        header {
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 5rem;
+            margin: 0;
+            color: var(--dedsec-rojo);
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            font-weight: 900;
+            text-shadow: 
+                5px 5px 0 var(--dedsec-azul),
+                -3px -3px 0 var(--dedsec-amarillo);
+            animation: glitch 1s linear infinite;
+            line-height: 0.9;
+        }
+        
+        .omg-text {
+            font-size: 3rem;
+            color: var(--dedsec-amarillo);
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 3px 3px 0 var(--dedsec-rojo);
+            animation: pulse 0.5s infinite alternate;
+        }
+        
+        .dedsec-text {
+            font-size: 4rem;
+            color: var(--dedsec-azul);
+            margin: 0.5rem 0 2rem 0;
+            font-weight: 900;
+            text-shadow: 
+                3px 3px 0 var(--dedsec-rojo),
+                -2px -2px 0 var(--dedsec-amarillo);
+            transform: rotate(-5deg);
+            display: inline-block;
+        }
+        
+        .epic-text {
+            font-size: 2.5rem;
+            color: white;
+            background-color: var(--dedsec-rojo);
+            padding: 0.5rem 2rem;
+            display: inline-block;
+            transform: rotate(3deg);
+            margin-top: 1rem;
+            border: 4px dashed var(--dedsec-amarillo);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0,0,0,0.7);
+            padding: 1.5rem;
+            border-top: 4px solid var(--dedsec-rojo);
+            border-bottom: 4px solid var(--dedsec-azul);
+            margin-bottom: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 2rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem;
+        }
+        
+        nav a:hover {
+            color: var(--dedsec-amarillo);
+        }
+        
+        nav a::before {
+            content: '[';
+            color: var(--dedsec-rojo);
+            position: absolute;
+            left: -10px;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        nav a::after {
+            content: ']';
+            color: var(--dedsec-rojo);
+            position: absolute;
+            right: -10px;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover::before, nav a:hover::after {
+            opacity: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            background-color: rgba(0,0,0,0.7);
+            border: 3px solid var(--dedsec-azul);
+            border-radius: 0;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dedsec-rojo), var(--dedsec-azul), var(--dedsec-amarillo));
+        }
+        
+        h2 {
+            color: var(--dedsec-amarillo);
+            font-size: 2rem;
+            margin-top: 0;
+            text-transform: uppercase;
+            border-bottom: 2px dashed var(--dedsec-rojo);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .member-card {
+            background-color: rgba(17,17,17,0.9);
+            border: 2px solid var(--dedsec-azul);
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 10px 20px rgba(255,0,60,0.3);
+            border-color: var(--dedsec-rojo);
+        }
+        
+        .member-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--dedsec-rojo), var(--dedsec-azul));
+        }
+        
+        .member-name {
+            color: var(--dedsec-rojo);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-role {
+            color: var(--dedsec-azul);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .member-bio {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .discord-cta {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: rgba(0,0,0,0.8);
+            border: 4px solid var(--dedsec-azul);
+            position: relative;
+            margin: 4rem 0;
+            overflow: hidden;
+        }
+        
+        .discord-cta::before {
+            content: 'ÚNETE';
+            position: absolute;
+            font-size: 10rem;
+            font-weight: 900;
+            color: rgba(255,0,60,0.1);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        
+        .discord-btn {
+            display: inline-block;
+            background-color: var(--dedsec-rojo);
+            color: white;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .discord-btn:hover {
+            background-color: var(--dedsec-azul);
+            transform: scale(1.05) rotate(-2deg);
+        }
+        
+        .terminal {
+            background-color: rgba(0,0,0,0.9);
+            border: 2px solid var(--dedsec-azul);
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: '>_';
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background-color: var(--fondo-oscuro);
+            padding: 0 10px;
+            color: var(--dedsec-rojo);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: black;
+            border-top: 4px solid var(--dedsec-rojo);
+            margin-top: 3rem;
+        }
+        
+        .footer-text {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        
+        /* Animaciones */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        
+        .meme-box {
+            background-color: var(--dedsec-amarillo);
+            color: black;
+            padding: 1rem;
+            margin: 2rem 0;
+            border: 3px dashed black;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2rem;
+            transform: rotate(-1deg);
+        }
+        
+        .emoji {
+            font-size: 1.5rem;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .omg-text {
+                font-size: 2rem;
+            }
+            
+            .dedsec-text {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="glitch-container">
+            <h1>DARK NET</h1>
+            <h1>OPERATIVES</h1>
+            <p class="omg-text">¡OMG!!!</p>
+            <p class="dedsec-text">¡ES COMO DEDSEC!</p>
+            <p class="epic-text">PERO MÁS ÉPICO <span class="emoji">🔥</span></p>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#about">Nosotros</a>
+        <a href="#members">Equipo</a>
+        <a href="#missions">Operaciones</a>
+        <a href="#join">Únete</a>
+    </nav>
+    
+    <div class="container">
+        <div class="meme-box">
+            ADVERTENCIA: Somos 87% más épicos que otros grupos de hackers <span class="emoji">💯</span>
+        </div>
+        
+        <section id="about" class="section">
+            <h2>// QUIÉNES SOMOS</h2>
+            <div class="terminal">
+                <p>> Iniciando sistema...<br>
+                > Evadiendo firewalls...<br>
+                > ¡Acceso concedido!<br><br>
+                
+                Somos Dark Net Operatives - el colectivo de hacktivistas amantes de los memes
+                del que has oído hablar en los foros más oscuros.<br><br>
+                
+                No somos el típico grupo de hackers aburridos. Combinamos habilidades de élite
+                con humor negro para luchar contra el sistema con estilo.<br><br>
+                
+                > Estado: Actualmente hackeando tu firewall <span class="emoji">😎</span></p>
+            </div>
+        </section>
+        
+        <section id="members" class="section">
+            <h2>// EL EQUIPO ÉPICO</h2>
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-name">Fantasma</div>
+                    <div class="member-role">Fantasma en el Firewall</div>
+                    <div class="member-bio">Desaparece de las cámaras con solo pestañear. Ha hackeado más sistemas que cenas calientes has tenido.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">Cifrador</div>
+                    <div class="member-role">Susurrador de Código</div>
+                    <div class="member-bio">Habla con las máquinas en binario. Hace que la encriptación sea su p*ta.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">Nyx</div>
+                    <div class="member-role">Ingeniera Social</div>
+                    <div class="member-bio">Podría convencer a un CEO de darle las llaves del mainframe con solo una sonrisa.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">Rust</div>
+                    <div class="member-role">Rompecódigos</div>
+                    <div class="member-bio">Especialista en hacer sistemas seguros muy... inseguros. Le gusta verlos arder.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="missions" class="section">
+            <h2>// OPERACIONES RECIENTES</h2>
+            <div class="terminal">
+                <p>> Accediendo a registros de misiones...<br><br>
+                
+                * Operación MEME STORM: Reemplazó sitio web gubernamental con memes de gatos (100% éxito)<br>
+                * Operación TELÉFONO BANANA: Hackeó el smartphone de un CEO para poner Rick Astley (Victoria épica)<br>
+                * Operación DATOS YEET: Borró archivos "privados" de político corrupto (Muy satisfactorio)<br><br>
+                
+                > Próximo objetivo: TUS firewalls <span class="emoji">👀</span></p>
+            </div>
+            
+            <div class="meme-box">
+                AVISO: Estas son operaciones totalmente reales y no inventadas para postureo <span class="emoji">🫡</span>
+            </div>
+        </section>
+        
+        <div class="discord-cta">
+            <h2 style="color: var(--dedsec-amarillo); font-size: 2.5rem;">¿LISTO PARA UNIRTE AL LADO ÉPICO?</h2>
+            <p style="font-size: 1.2rem; position: relative; z-index: 1;">Tenemos galletas (y acceso root a tu router)</p>
+            <a href="https://discord.gg/tu-invitacion-real" class="discord-btn" target="_blank">ÚNETE AHORA <span class="emoji">🚀</span></a>
+        </div>
+        
+        <section id="join" class="section">
+            <h2>// ¿QUIERES SER ÉPICO?</h2>
+            <div class="terminal">
+                <p>> Escaneando posible recluta...<br><br>
+                
+                Requisitos:<br>
+                - Ser 420% más hacker que los normies<br>
+                - Poder programar con falta de sueño<br>
+                - Saber que "el pastel es una mentira"<br>
+                - Conocedor de memes<br><br>
+                
+                Beneficios:<br>
+                - Nombre hacker molón<br>
+                - Derechos de fanfarroneo<br>
+                - Hacer el bien (a veces)<br><br>
+                
+                > ¿A qué esperas? ¡ÚNETE!<span class="emoji">👾</span></p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2025 DARK NET OPERATIVES | NO SOMOS UN GRUPO REAL DE HACKERS (¿O SÍ?)</p>
+        <p class="footer-text">Este es un sitio de parodia inspirado en Watch Dogs 2. Realmente no hackeamos cosas (guiño guiño).</p>
+    </footer>
+    
+    <script>
+        // Efecto de máquina de escribir para los terminales
+        document.addEventListener('DOMContentLoaded', function() {
+            const terminals = document.querySelectorAll('.terminal p');
+            
+            terminals.forEach(terminal => {
+                const originalText = terminal.innerHTML;
+                terminal.innerHTML = '';
+                
+                let i = 0;
+                const typing = setInterval(() => {
+                    if (i < originalText.length) {
+                        terminal.innerHTML += originalText.charAt(i);
+                        i++;
+                        terminal.scrollTop = terminal.scrollHeight;
+                    } else {
+                        clearInterval(typing);
+                    }
+                }, 20);
+            });
+            
+            // Efecto de parpadeo para cursos
+            setInterval(() => {
+                const cursors = document.querySelectorAll('.terminal p');
+                cursors.forEach(cursor => {
+                    if (cursor.innerHTML.endsWith('|')) {
+                        cursor.innerHTML = cursor.innerHTML.slice(0, -1);
+                    } else {
+                        cursor.innerHTML += '|';
+                    }
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

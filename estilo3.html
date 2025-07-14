@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK NET OPERATIVES | //MIST1024_ATONAL</title>
+    <style>
+        :root {
+            --glitch1: #ff003c;
+            --glitch2: #00ff88;
+            --glitch3: #6200ff;
+            --bg-dark: #0a0a0a;
+            --text-light: #e0e0e0;
+        }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 70% 30%, rgba(255,0,60,0.03) 0%, transparent 30%),
+                radial-gradient(circle at 30% 70%, rgba(0,255,136,0.03) 0%, transparent 30%);
+        }
+        
+        .glitch-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+        
+        header {
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--glitch1);
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: transparent;
+            text-shadow: 
+                3px 3px 0 var(--glitch1),
+                -3px -3px 0 var(--glitch2),
+                0 0 10px var(--glitch3);
+            letter-spacing: -2px;
+            font-weight: 900;
+            line-height: 0.9;
+            position: relative;
+        }
+        
+        h1::before {
+            content: "DARK NET OPERATIVES";
+            position: absolute;
+            left: -4px;
+            text-shadow: 4px 0 var(--glitch3);
+            clip: rect(0, 500px, 60px, 0);
+            animation: glitch 3s infinite alternate-reverse;
+        }
+        
+        h1::after {
+            content: "DARK NET OPERATIVES";
+            position: absolute;
+            left: 4px;
+            text-shadow: -4px 0 var(--glitch2);
+            clip: rect(0, 500px, 60px, 0);
+            animation: glitch 2s infinite alternate;
+        }
+        
+        .ascii-art {
+            color: var(--glitch2);
+            font-family: monospace;
+            white-space: pre;
+            font-size: 0.7rem;
+            line-height: 0.9;
+            margin: 2rem 0;
+            text-align: center;
+            animation: flicker 5s infinite;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0,0,0,0.7);
+            padding: 1.5rem;
+            border-top: 1px solid var(--glitch2);
+            border-bottom: 1px solid var(--glitch3);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a:hover {
+            color: var(--glitch1);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--glitch1), var(--glitch2), var(--glitch3));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            background-color: rgba(10,10,10,0.8);
+            border: 1px solid var(--glitch3);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--glitch1), var(--glitch2), var(--glitch3));
+        }
+        
+        h2 {
+            color: var(--glitch2);
+            font-size: 1.8rem;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--glitch1), transparent);
+        }
+        
+        .terminal {
+            background-color: rgba(0,0,0,0.7);
+            border: 1px solid var(--glitch1);
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: '>_';
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background-color: var(--bg-dark);
+            padding: 0 10px;
+            color: var(--glitch2);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .member-card {
+            background-color: rgba(20,20,20,0.7);
+            border: 1px solid var(--glitch3);
+            padding: 1.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-card:hover {
+            border-color: var(--glitch1);
+            transform: translateY(-5px);
+        }
+        
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,0,60,0.1), transparent);
+            transition: all 0.5s;
+        }
+        
+        .member-card:hover::before {
+            left: 100%;
+        }
+        
+        .member-name {
+            color: var(--glitch1);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-role {
+            color: var(--glitch2);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .discord-cta {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: rgba(0,0,0,0.8);
+            border: 1px solid var(--glitch2);
+            position: relative;
+            margin: 4rem 0;
+            overflow: hidden;
+        }
+        
+        .discord-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--glitch1), var(--glitch3));
+            color: white;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .discord-btn:hover {
+            background: linear-gradient(45deg, var(--glitch3), var(--glitch1));
+            transform: scale(1.05);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(0,0,0,0.9);
+            border-top: 1px solid var(--glitch3);
+            margin-top: 3rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Animaciones */
+        @keyframes glitch {
+            0% { clip: rect(10px, 500px, 20px, 0); }
+            20% { clip: rect(30px, 500px, 50px, 0); }
+            40% { clip: rect(20px, 500px, 60px, 0); }
+            60% { clip: rect(50px, 500px, 10px, 0); }
+            80% { clip: rect(30px, 500px, 70px, 0); }
+            100% { clip: rect(70px, 500px, 40px, 0); }
+        }
+        
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 22%, 24%, 55% { opacity: 0.3; }
+        }
+        
+        .corrupted-text {
+            animation: corrupted 8s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes corrupted {
+            0% { opacity: 0.8; }
+            10% { transform: translate(2px, 1px); }
+            20% { opacity: 0.6; }
+            30% { transform: translate(-1px, 2px); }
+            40% { opacity: 0.9; }
+            50% { transform: translate(1px, -1px); }
+            60% { opacity: 0.4; }
+            70% { transform: translate(-2px, 1px); }
+            80% { opacity: 1; }
+            90% { transform: translate(1px, -2px); }
+            100% { opacity: 0.8; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav a {
+                margin: 0.5rem;
+                font-size: 1rem;
+            }
+            
+            .ascii-art {
+                font-size: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="glitch-container">
+            <h1>DARK NET OPERATIVES</h1>
+            <div class="ascii-art">
+      ______
+   .-'      '-.
+  /            \
+ |              |
+ |,  .-.  .-.  ,|
+ | )(_o/  \o_)( |
+ |/     /\     \|
+ (_     ^^     _)
+  \__|IIIIII|__/
+   | \IIIIII/ |
+   \          /
+    `--------`
+            </div>
+            <p class="corrupted-text">//MIST1024_ATONALOSPREY-SKULL_IN_THE_SAND</p>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#about">Sobre Nosotros</a>
+        <a href="#members">Operativos</a>
+        <a href="#missions">Misiones</a>
+        <a href="#join">Únete</a>
+    </nav>
+    
+    <div class="container">
+        <section id="about" class="section">
+            <h2>// CORRUPTED_DATA</h2>
+            <div class="terminal">
+                <p>> Iniciando transmisión...<br>
+                > Señal inestable detectada<br>
+                > Reconstruyendo datos...<br><br>
+                
+                Dark Net Operatives es un <span class="corrupted-text">colectivo</span> de <span class="corrupted-text">hacktivistas</span> que opera en los <span class="corrupted-text">espacios</span> entre la realidad y el <span class="corrupted-text">ciberespacio</span>.<br><br>
+                
+                Nuestro <span class="corrupted-text">objetivo</span>: Desestabilizar los <span class="corrupted-text">sistemas</span> de control mediante <span class="corrupted-text">intervenciones</span> glitch.<br><br>
+                
+                > Estado del sistema: <span class="corrupted-text">CORRUPTO</span> pero <span class="corrupted-text">FUNCIONAL</span></p>
+            </div>
+        </section>
+        
+        <section id="members" class="section">
+            <h2>// OPERATIVOS</h2>
+            <div class="terminal">
+                <p>> Accediendo a registros de miembros...<br>
+                > Algunos datos pueden estar corruptos<br><br>
+                
+                ADVERTENCIA: Las identidades están protegidas por <span class="corrupted-text">encriptación</span> glitch</p>
+            </div>
+            
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-name">PH4N70M</div>
+                    <div class="member-role">ESPECIALISTA EN INFILTRACIÓN</div>
+                    <div class="member-bio">Deja menos rastro que un <span class="corrupted-text">error</span> de sistema en un <span class="corrupted-text">registro</span> sobrescrito.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">CYPH3R</div>
+                    <div class="member-role">CRIPTÓGRAFO GLITCH</div>
+                    <div class="member-bio">Crea algoritmos que <span class="corrupted-text">colapsan</span> bajo su propio <span class="corrupted-text">peso</span>.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">NYX_</div>
+                    <div class="member-role">INGENIERA SOCIAL</div>
+                    <div class="member-bio">Manipula <span class="corrupted-text">sistemas</span> humanos como si fueran <span class="corrupted-text">código</span> mal formateado.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">RUST++</div>
+                    <div class="member-role">DESARROLLADOR CORRUPTO</div>
+                    <div class="member-bio">Especializado en <span class="corrupted-text">exploits</span> que <span class="corrupted-text">desintegran</span> la arquitectura del sistema.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="missions" class="section">
+            <h2>// MISIONES RECIENTES</h2>
+            <div class="terminal">
+                <p>> Cargando archivos de misión...<br>
+                > Integridad de datos: 67%<br><br>
+                
+                * <span class="corrupted-text">OPERACIÓN</span> GLITCH_RAIN: Inyectado código <span class="corrupted-text">corrupto</span> en servidores corporativos<br>
+                * <span class="corrupted-text">OPERACIÓN</span> SKULL_IN_THE_SAND: <span class="corrupted-text">Sustitución</span> de bases de datos con <span class="corrupted-text">arte</span> glitch<br>
+                * <span class="corrupted-text">OPERACIÓN</span> ATONAL_OSPREY: <span class="corrupted-text">Interferencia</span> masiva en sistemas de <span class="corrupted-text">vigilancia</span><br><br>
+                
+                > Más información <span class="corrupted-text">disponible</span> para miembros <span class="corrupted-text">verificados</span></p>
+            </div>
+        </section>
+        
+        <div class="discord-cta">
+            <h2>¿LISTO PARA <span class="corrupted-text">CORROMPER</span> EL SISTEMA?</h2>
+            <p>Únete a nuestro servidor de Discord para operaciones <span class="corrupted-text">glitch</span></p>
+            <a href="https://discord.gg/tu-enlace" class="discord-btn" target="_blank">ACCESO A CANAL PRIVADO</a>
+        </div>
+        
+        <section id="join" class="section">
+            <h2>// RECLUTAMIENTO</h2>
+            <div class="terminal">
+                <p>> Iniciando protocolo de <span class="corrupted-text">reclutamiento</span>...<br><br>
+                
+                Buscamos individuos con:<br>
+                - Habilidades en <span class="corrupted-text">manipulación</span> de sistemas<br>
+                - Conocimiento de <span class="corrupted-text">exploits</span> glitch<br>
+                - Mentalidad <span class="corrupted-text">anárquica</span><br>
+                - Capacidad para <span class="corrupted-text">desaparecer</span><br><br>
+                
+                ADVERTENCIA: Este no es un <span class="corrupted-text">juego</span>. Las consecuencias son <span class="corrupted-text">reales</span>.</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>DARK NET OPERATIVES © <span class="corrupted-text">2023</span> | TODOS LOS DERECHOS <span class="corrupted-text">CORROMPIDOS</span></p>
+        <p>Este es un proyecto ficticio. No realizamos actividades <span class="corrupted-text">ilegales</span>.</p>
+    </footer>
+</body>
+</html>

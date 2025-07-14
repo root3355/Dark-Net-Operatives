@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Net Operatives | Hacktivismo Digital</title>
+    <style>
+        :root {
+            --primary: #00b4d8;
+            --secondary: #7209b7;
+            --dark: #03071e;
+            --light: #e9ecef;
+            --accent: #f72585;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        header {
+            background: linear-gradient(90deg, rgba(2,0,36,0.8) 0%, rgba(114,9,183,0.8) 50%, rgba(0,180,216,0.8) 100%);
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 0 0 10px var(--primary);
+            animation: glitch 1s linear infinite;
+        }
+        
+        .tagline {
+            color: var(--accent);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(3,7,30,0.9);
+            padding: 1rem;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 5px var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            background-color: rgba(3,7,30,0.7);
+            border: 1px solid var(--secondary);
+            border-radius: 5px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px rgba(114,9,183,0.3);
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 1px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .member-card {
+            background-color: rgba(0,0,0,0.5);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            padding: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,180,216,0.4);
+        }
+        
+        .member-name {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        .member-bio {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .discord-cta {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(114,9,183,0.7) 0%, rgba(88,101,242,0.7) 100%);
+            border-radius: 5px;
+            margin: 3rem 0;
+        }
+        
+        .discord-btn {
+            display: inline-block;
+            background-color: #5865F2;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.1rem;
+        }
+        
+        .discord-btn:hover {
+            background-color: #4752c4;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(88,101,242,0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: rgba(3,7,30,0.9);
+            border-top: 1px solid var(--secondary);
+            margin-top: 2rem;
+        }
+        
+        .typing-effect {
+            border-right: 2px solid var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+        
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--primary), -2px 0 var(--accent); }
+            25% { text-shadow: -2px 0 var(--primary), 2px 0 var(--accent); }
+            50% { text-shadow: 2px 0 var(--accent), -2px 0 var(--primary); }
+            75% { text-shadow: -2px 0 var(--accent), 2px 0 var(--primary); }
+            100% { text-shadow: 2px 0 var(--primary), -2px 0 var(--accent); }
+        }
+        
+        /* Efectos de terminal */
+        .terminal {
+            background-color: rgba(0,0,0,0.8);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: '>_';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background-color: var(--dark);
+            padding: 0 5px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1 }
+            50% { opacity: 0 }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixCanvas"></div>
+    
+    <header>
+        <h1>DARK NET OPERATIVES</h1>
+        <p class="tagline typing-effect">Libertad digital a través del caos controlado</p>
+    </header>
+    
+    <nav>
+        <a href="#about">Sobre Nosotros</a>
+        <a href="#members">Operativos</a>
+        <a href="#missions">Misiones</a>
+        <a href="#join">Únete</a>
+    </nav>
+    
+    <div class="container">
+        <section id="about" class="section">
+            <h2>// SOBRE EL COLECTIVO</h2>
+            <div class="terminal">
+                <p>> Iniciando transmisión...<br>
+                > Cifrado activado<br>
+                > Conexión segura establecida<br><br>
+                
+                Bienvenido a Dark Net Operatives. Somos un colectivo dedicado a la libertad de información, 
+                la privacidad digital y la resistencia contra la vigilancia masiva. Operamos en las sombras 
+                pero luchamos por la luz.<br><br>
+                
+                > Sistema operativo: DedSec OS v3.1.4<br>
+                > Estado: Activo y operativo<br>
+                > Objetivo: Descentralizar el poder</p>
+            </div>
+        </section>
+        
+        <section id="members" class="section">
+            <h2>// OPERATIVOS CLAVE</h2>
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-name">Phantom</div>
+                    <div class="member-role">Líder / Experto en infiltración</div>
+                    <div class="member-bio">Especialista en penetrar sistemas de alta seguridad y desaparecer sin dejar rastro.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">Cypher</div>
+                    <div class="member-role">Criptógrafo</div>
+                    <div class="member-bio">Diseña nuestros protocolos de encriptación y rompe los ajenos.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">Nyx</div>
+                    <div class="member-role">Ingeniera social</div>
+                    <div class="member-bio">Maestra del engaño y la manipulación de sistemas humanos.</div>
+                </div>
+                <div class="member-card">
+                    <div class="member-name">Rust</div>
+                    <div class="member-role">Desarrollador</div>
+                    <div class="member-bio">Crea nuestras herramientas personalizadas y mantiene la red segura.</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="missions" class="section">
+            <h2>// OPERACIONES RECIENTES</h2>
+            <div class="terminal">
+                <p>> Accediendo a registros clasificados...<br><br>
+                
+                * Operación Midnight Sun: Exposición de corrupción gubernamental (Éxito)<br>
+                * Operación Glass House: Toma de control de sistema de vigilancia urbana (Éxito)<br>
+                * Operación Paper Trail: Destrucción de registros de ciudadanos inocentes (En progreso)<br><br>
+                
+                > Más información disponible para miembros verificados</p>
+            </div>
+        </section>
+        
+        <div class="discord-cta">
+            <h2>CONÉCTATE CON NOSOTROS</h2>
+            <p>Únete a nuestro servidor de Discord para coordinación y operaciones.</p>
+            <a href="https://discord.gg/tu-enlace-de-invitacion" class="discord-btn" target="_blank">UNIRSE A DARK NET OPERATIVES</a>
+        </div>
+        
+        <section id="join" class="section">
+            <h2>// QUIERES UNIRTE?</h2>
+            <div class="terminal">
+                <p>> Iniciando protocolo de reclutamiento...<br><br>
+                
+                Buscamos individuos con habilidades en:<br>
+                - Hacking ético<br>
+                - Desarrollo de software<br>
+                - Criptografía<br>
+                - Investigación<br>
+                - Diseño gráfico<br><br>
+                
+                Si crees que tienes lo necesario, únete a nuestro Discord y supera nuestras pruebas de iniciación.<br><br>
+                
+                > ADVERTENCIA: Esto no es un juego<span class="blink">_</span></p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Dark Net Operatives © 2023 | Todos los derechos no reservados</p>
+        <p>Este es un proyecto ficticio inspirado en Watch Dogs 2. No realizamos actividades ilegales.</p>
+    </footer>
+    
+    <script>
+        // Efecto Matrix para el fondo
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+        
+        const alphabet = katakana + latin + nums + symbols;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        
+        const rainDrops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+        
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+        
+        setInterval(draw, 30);
+        
+        // Efecto de escritura para otros elementos
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.typing-effect');
+            elements.forEach(el => {
+                const text = el.textContent;
+                el.textContent = '';
+                let i = 0;
+                const typing = setInterval(() => {
+                    if (i < text.length) {
+                        el.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                        el.classList.remove('typing-effect');
+                    }
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

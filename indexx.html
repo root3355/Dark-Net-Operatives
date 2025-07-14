@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Net Operatives - Cargando...</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .loading-text {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .cursor {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1 }
+            50% { opacity: 0 }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-text">
+        > Iniciando sistema Dark Net Operatives...<br>
+        > Seleccionando versión aleatoria...<br>
+        <span class="cursor">_</span>
+    </div>
+
+    <script>
+        // Espera 2 segundos para mostrar el mensaje (opcional)
+        setTimeout(function() {
+            // Genera número aleatorio (0 o 1)
+            const randomVersion = Math.random() < 0.5 ? 'estilo1' : (Math.random() < 0.6 ? 'estilo2' : 'estilo3');
+// Nota: Esto tiene un comportamiento diferente (segundo Math.random() es independiente)
+            
+            // Redirecciona a la versión seleccionada
+            window.location.href = randomVersion + '.html';
+        }, 2000);
+    </script>
+</body>
+</html>
